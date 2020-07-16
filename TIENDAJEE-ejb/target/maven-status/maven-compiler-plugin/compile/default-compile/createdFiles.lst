@@ -3,10 +3,14 @@ com\tienda\session\EmpleadoFacade.class
 com\tienda\session\CargoFacade.class
 com\tienda\session\EstadoCivilFacadeLocal.class
 com\tienda\entidades\EstadoCivil_.class
+com\tienda\entidades\Proveedor.class
+com\tienda\session\ProveedorFacadeLocal.class
 com\tienda\session\AbstractFacade.class
 com\tienda\entidades\Empleado.class
+com\tienda\entidades\Proveedor_.class
 com\tienda\session\CargoFacadeLocal.class
 com\tienda\session\EstadoCivilFacade.class
+com\tienda\session\ProveedorFacade.class
 com\tienda\entidades\Cargo.class
 com\tienda\entidades\Cargo_.class
 com\tienda\session\EmpleadoFacadeLocal.class

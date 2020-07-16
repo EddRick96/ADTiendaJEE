@@ -1,14 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Mantenimiento Cargo</title>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <br/>
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+        <ui:composition template="plantilla.xhtml">
+            <ui:define name="content">
+
+                <h:form id="formprincipal">
+
+                    <p:panel header = "#{cargoManagedBean.cargo.codigo == null ? 'INGRSO DE CARGO' : 'ACTUALIZAR CARGO'}"
+                             rendered = "#{cargoManagedBean.cargo != null}">
+                        <div align = "center">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="CÓDIGO:"></p:outputLabel>
+                                <p:inputText value="#{cargoManagedBean.cargo.codigo}"
+                                             disabled="true"></p:inputText>
+                                <p:outputLabel value="NOMBRE:"></p:outputLabel>
+                                <p:inputText value="#{cargoManagedBean.cargo.nombre}"></p:inputText>
+                            </h:panelGrid>
+                        </div>
+
+                        <div align="center">
+                            <p:commandButton value="CANCELAR"
+                                             action="#{cargoManagedBean.cancelar()}"
+                                             update="formprincipal">
+                            </p:commandButton>
+                            <p:commandButton value="GRABAR"
+                                             action="#{cargoManagedBean.grabar()}"
+                                             update="formprincipal">
+                            </p:commandButton>
+                        </div>
+                    </p:panel>
+
+                    <p:panel header="LISTA DE CARGOS" rendered="#{cargoManagedBean.cargo == null}">
+                        <div align="center">
+                            <p:commandButton value="INGRESAR"
+                                             action="#{cargoManagedBean.nuevo()}"
+                                             update="formprincipal"
+                                             style="align-items: center">
+                            </p:commandButton>
+                        </div>
+
+                        <div align="center">
+                            <p:dataTable id="tablacargo" value="#{cargoManagedBean.listaCargos}" var="car">
+                                <p:column headerText="CÓDIGO">
+                                    <p:outputLabel value="#{car.codigo}"></p:outputLabel>
+                                </p:column>
+                                <p:column headerText="NOMBRE">
+                                    <p:outputLabel value="#{car.nombre}"></p:outputLabel>
+                                </p:column>
+                                <p:column headerText="EDITAR">
+                                    <p:commandButton action="#{cargoManagedBean.seleccionar(car)}"
+                                                     update="formprincipal"
+                                                     icon="ui-icon-check">
+                                    </p:commandButton>
+                                </p:column>
+                                <p:column headerText="ELIMINAR">
+                                    <p:commandButton action="#{cargoManagedBean.eliminar(car)}"
+                                                     update="formprincipal"
+                                                     icon="ui-icon-trash">
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                    </p:panel>
+
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+
     </h:body>
 </html>
 

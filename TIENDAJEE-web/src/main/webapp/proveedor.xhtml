@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Proveedor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="plantilla.xhtml">
+            <ui:define name="content">
+
+                <h:form id="formprincipal">
+
+                    <p:panel header = "#{proveedorManagedBean.proveedor.codigo == null ? 'INGRESO DE PROVEEDOR' : 'ACTUALIZAR PROVEEDOR'}"
+                             rendered = "#{proveedorManagedBean.proveedor != null}">
+                        <div align = "center">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="CÓDIGO:"></p:outputLabel>
+                                <p:inputText value="#{proveedorManagedBean.proveedor.codigo}"
+                                             disabled="true"></p:inputText>
+                                <p:outputLabel value="NOMBRE:"></p:outputLabel>
+                                <p:inputText value="#{proveedorManagedBean.proveedor.nombre}"></p:inputText>
+                                <p:outputLabel value="RUC:"></p:outputLabel>
+                                <p:inputText value="#{proveedorManagedBean.proveedor.ruc}"></p:inputText>
+                                <p:outputLabel value="DIRECCIÓN:"></p:outputLabel>
+                                <p:inputText value="#{proveedorManagedBean.proveedor.direccion}"></p:inputText>
+                                <p:outputLabel value="E-MAIL:"></p:outputLabel>
+                                <p:inputText value="#{proveedorManagedBean.proveedor.email}"></p:inputText>
+                                <p:outputLabel value="CIUDAD:"></p:outputLabel>
+                                <p:inputText value="#{proveedorManagedBean.proveedor.ciudad}"></p:inputText>
+                                <p:outputLabel value="SITIO-WEB:"></p:outputLabel>
+                                <p:inputText value="#{proveedorManagedBean.proveedor.sitioweb}"></p:inputText>
+                            </h:panelGrid>
+                        </div>
+
+                        <div align="center">
+                            <p:commandButton value="CANCELAR"
+                                             action="#{proveedorManagedBean.cancelar()}"
+                                             update="formprincipal">
+                            </p:commandButton>
+                            <p:commandButton value="GRABAR"
+                                             action="#{proveedorManagedBean.grabar()}"
+                                             update="formprincipal">
+                            </p:commandButton>
+                        </div>
+                    </p:panel>
+
+                    <p:panel header="LISTA DE PROVEEDORES" rendered="#{proveedorManagedBean.proveedor == null}">
+                        <div align="center">
+                            <p:commandButton value="INGRESAR"
+                                             action="#{proveedorManagedBean.nuevo()}"
+                                             update="formprincipal"
+                                             style="align-items: center">
+                            </p:commandButton>
+                        </div>
+                        <br/>
+                        <div align="center">
+                            <p:dataTable id="tablacargo" value="#{proveedorManagedBean.listaProveedores}" var="prov">
+                                <p:column headerText="CÓDIGO">
+                                    <p:outputLabel value="#{prov.codigo}"></p:outputLabel>
+                                </p:column>
+                                <p:column headerText="NOMBRE">
+                                    <p:outputLabel value="#{prov.nombre}"></p:outputLabel>
+                                </p:column>
+                                <p:column headerText="RUC">
+                                    <p:outputLabel value="#{prov.ruc}"></p:outputLabel>
+                                </p:column>
+                                <p:column headerText="DIRECCIÓN">
+                                    <p:outputLabel value="#{prov.direccion}"></p:outputLabel>
+                                </p:column>
+                                <p:column headerText="E-MAIL">
+                                    <p:outputLabel value="#{prov.email}"></p:outputLabel>
+                                </p:column>
+                                <p:column headerText="CIUDAD">
+                                    <p:outputLabel value="#{prov.ciudad}"></p:outputLabel>
+                                </p:column>
+                                <p:column headerText="SITIO-WEB">
+                                    <p:outputLabel value="#{prov.sitioweb}"></p:outputLabel>
+                                </p:column>
+                                <p:column headerText="EDITAR">
+                                    <p:commandButton action="#{proveedorManagedBean.seleccionar(prov)}"
+                                                     update="formprincipal"
+                                                     icon="ui-icon-check">
+                                    </p:commandButton>
+                                </p:column>
+                                <p:column headerText="ELIMINAR">
+                                    <p:commandButton action="#{proveedorManagedBean.eliminar(prov)}"
+                                                     update="formprincipal"
+                                                     icon="ui-icon-trash">
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                    </p:panel>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+             
+        
+        
+    </h:body>
+</html>
