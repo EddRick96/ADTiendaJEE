@@ -27,20 +27,7 @@
       
   
   
-  <modules>
-              
-    
-    
-    <module>TIENDAJEE-ear</module>
-              
-    
-    
-    <module>TIENDAJEE-web</module>
-          
-    
-    <module>TIENDAJEE-ejb</module>
-      
-  </modules>
+  <modules></modules>
     
 
 </project>
